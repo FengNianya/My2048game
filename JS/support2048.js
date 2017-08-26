@@ -1,4 +1,4 @@
-// 找到方格位置
+// 定位 &&找到方格位置的函数
 function getPosTop(i,j){
     var top=20+i*(100+20);
     return top;
@@ -7,7 +7,46 @@ function getPosLeft(i,j){
     var left=20+j*(100+20);
     return left;
 }
-// 每次更新先将所有的数字方块全部移除，在弄个循环创建它们
+
+//随机生成一个数2或4
+function generateOneNumber(){
+  //先看有无空格
+    if(nospace(board)){
+        return false;
+    }
+
+    //随机生成一个位置
+    var randx=parseInt(Math.floor(Math.random()*4));
+    var randy=parseInt(Math.floor(Math.random()*4));
+//看是不是空格,优化随机
+    var times=0;
+    while(times<50){
+        if(board[randx][randy]==0){
+            break;
+        }
+        //重复
+        var randx=parseInt(Math.floor(Math.random()*4));
+        var randy=parseInt(Math.floor(Math.random()*4));
+
+        times++;
+    }
+    if(times==50){
+        for(var i=0;i<4;i++){
+            for(var j=0;j<4;j++){
+                if(board[i][j]==0){
+                    randx=i;
+                    randy=j;
+                }
+            }
+        }
+    }
+    // 在格子上随机生成一个数字
+    var randNumber=Math.random()<0.65?2:4;
+    showNumberWithAnimation(randx,randy,randNumber);
+    board[randx][randy]=randNumber;
+}
+
+// 更新面板（每次更新先将所有的数字方块全部移除，在弄个循环创建它们）
 function updateBoardView(){
   //如果有number-cell后先删除
     $(".number-cell").remove();
@@ -77,6 +116,8 @@ function getNumberBackgroundColor(number){
         case 2048:
             color='#09c';
             break;
+        case 4096:
+            color="#fff";
     }
     return color;
 }
@@ -343,5 +384,14 @@ function isgameover(){
     alert("亲爱的游戏结束了，你的得分是"+score+",可以说是非常厉害了。再来一局吧！")
     return false;
   }
+    return true;
+}
+
+//有无障碍
+function noBlockHorizontal(row,col1,col2,board){
+    for(var i=col1+1;i<col2;i++){
+        if(board[row][i]!=0)
+            return false;
+    }
     return true;
 }

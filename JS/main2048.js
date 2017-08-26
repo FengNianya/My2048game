@@ -7,11 +7,6 @@ $(document).ready(function(){
   newGame();
 })
 
-
-function newbox(){
-
-}
-
 function newGame(){
   //为移动端初始化宽度
   // prepareForMobile();
@@ -35,15 +30,7 @@ function init(){
       });
     }
   }
-  // for (var i = 0; i < 4; i++) {
-  //   for (var j = 0; j < 4; j++) {
-  //     var gridCell=$("#grid-cell-"+"i"+"-"+"j");
-  //     gridCell.css({
-  //       "top":getPosTop(i,j),
-  //       "left":getPosLeft(i,j)
-  //     });
-  //   }
-  // }
+
   //初始化board数组
   for (var i = 0; i < 4; i++) {
     board[i]=new Array();
@@ -51,13 +38,13 @@ function init(){
       board[i][j]=0;
     }
   }
-   //如果有操作,更新界面
+   //更新界面，清空分数
    updateBoardView();
    score=0;
    $("#score").text(score);
 }
 
-//生成格子
+//随机生成一个数2或4
 function generateOneNumber(){
   //先看有无空格
     if(nospace(board)){
@@ -124,16 +111,6 @@ $(document).keydown(function (event){
            break;
    }
 });
-
-//有无障碍
-function noBlockHorizontal(row,col1,col2,board){
-    for(var i=col1+1;i<col2;i++){
-        if(board[row][i]!=0)
-            return false;
-    }
-    return true;
-}
-
 
 function updateScore(score){
   var scorebox=$("#score");
