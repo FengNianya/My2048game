@@ -87,6 +87,7 @@ function getNumberBackgroundColor(number){
         case 2:
             color='#eee4da';
             break;
+        case 4:
              color="#ede0c8";
             break;
         case 8:
