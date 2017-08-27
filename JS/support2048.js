@@ -91,19 +91,19 @@ function getNumberBackgroundColor(number){
              color="#ede0c8";
             break;
         case 8:
-            color='#f2b179';
+            color='#668f86';
             break;
         case 16:
-            color="#f59563";
+            color="#396b84";
             break;
         case 32:
-            color='#f67c5f';
+            color='#424980';
             break;
         case 64:
-            color="#f65e3b";
+            color="#662a5e";
             break;
         case 128:
-            color='#edcf72';
+            color='#4f2e48';
             break;
         case 256:
             color="#edcc61";
